@@ -52,6 +52,18 @@ Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxx')
 access_token <- get_spotify_access_token()
 ```
 
+#### Authorization code flow
+
+For certain functions and applications, you’ll need to log in as a
+Spotify user. To do this, your Spotify Developer application needs to
+have a callback url. You can set this to whatever you want that will
+work with your application, but a good default option is
+`http://localhost:1410/` (see image below). For more information on
+authorization, visit the offical [Spotify Developer
+Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/).
+
+<img src="man/figures/spotifyr_auth_screenshot.png" width="75%" />
+
 ## Usage
 
 ### What was The Beatles’ favorite key?
@@ -71,39 +83,33 @@ beatles %>%
     kable()
 ```
 
-| key\_mode |   n |
-| :-------- | --: |
-| D major   | 184 |
-| G major   | 113 |
-| A major   |  76 |
-| C major   |  76 |
-| A minor   |  72 |
+| key\_mode |  n |
+| :-------- | -: |
+| D major   | 24 |
+| G major   | 21 |
+| A major   | 13 |
+| F major   | 12 |
+| C major   | 11 |
 
 ### Get your most recently played tracks
 
 ``` r
 library(lubridate)
-#> 
-#> Attaching package: 'lubridate'
-#> The following object is masked from 'package:base':
-#> 
-#>     date
 
 get_my_recently_played(limit = 5) %>% 
     mutate(artist.name = map_chr(track.artists, function(x) x$name[1]),
            played_at = as_datetime(played_at)) %>% 
     select(track.name, artist.name, track.album.name, played_at) %>% 
     kable()
-#> Auto-refreshing stale OAuth token.
 ```
 
-| track.name         | artist.name | track.album.name  | played\_at          |
-| :----------------- | :---------- | :---------------- | :------------------ |
-| Spanish Pipedream  | John Prine  | John Prine        | 2019-03-04 17:24:45 |
-| Every Single Thing | HOMESHAKE   | Fresh Air         | 2019-03-04 15:56:27 |
-| The Way U Do       | Shlohmo     | Vacation - Single | 2019-03-04 15:55:43 |
-| Still Life         | Shlohmo     | Rock Music        | 2019-03-04 15:28:35 |
-| Send Help          | Shlohmo     | Rock Music        | 2019-03-04 15:23:37 |
+| track.name                | artist.name | track.album.name | played\_at          |
+| :------------------------ | :---------- | :--------------- | :------------------ |
+| Dollars & Cents           | Radiohead   | Amnesiac         | 2019-03-11 23:16:24 |
+| Morning Bell/Amnesiac     | Radiohead   | Amnesiac         | 2019-03-11 23:14:29 |
+| Pulk/Pull Revolving Doors | Radiohead   | Amnesiac         | 2019-03-11 23:11:14 |
+| Pyramid Song              | Radiohead   | Amnesiac         | 2019-03-11 23:07:06 |
+| Treefingers               | Radiohead   | Kid A            | 2019-03-11 23:02:17 |
 
 ### Find your all time favorite artists
 
@@ -116,13 +122,13 @@ get_my_top_artists_or_tracks(type = 'artists', time_range = 'long_term', limit =
     kable()
 ```
 
-| name         | genres                                                                                                                                      |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| Radiohead    | alternative rock, art rock, melancholia, modern rock, permanent wave, rock                                                                  |
-| Onra         | alternative hip hop, chillhop, trip hop, wonky                                                                                              |
-| Flying Lotus | alternative hip hop, chillwave, electronic, experimental hip hop, glitch, glitch hop, hip hop, indietronica, intelligent dance music, wonky |
-| Teebs        | abstract beats, bass music, chillwave, indietronica, wonky                                                                                  |
-| Aphex Twin   | ambient, electronic, intelligent dance music, trip hop                                                                                      |
+| name         | genres                                                                                                                                                   |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Radiohead    | alternative rock, art rock, melancholia, modern rock, oxford indie, permanent wave, rock                                                                 |
+| Onra         | alternative hip hop, chillhop, trip hop, wonky                                                                                                           |
+| Flying Lotus | alternative hip hop, chillwave, electronic, escape room, experimental hip hop, glitch, glitch hop, hip hop, indietronica, intelligent dance music, wonky |
+| Teebs        | abstract beats, bass music, chillwave, wonky                                                                                                             |
+| Aphex Twin   | ambient, electronic, fourth world, intelligent dance music, new rave, trip hop                                                                           |
 
 ### Find your favorite tracks at the moment
 
@@ -133,13 +139,13 @@ get_my_top_artists_or_tracks(type = 'tracks', time_range = 'short_term', limit =
     kable()
 ```
 
-| name              | artist.name     | album.name     |
-| :---------------- | :-------------- | :------------- |
-| Illegal Smile     | John Prine      | John Prine     |
-| Spanish Pipedream | John Prine      | John Prine     |
-| The Bends         | Earl Sweatshirt | Some Rap Songs |
-| Shattered Dreams  | Earl Sweatshirt | Some Rap Songs |
-| Nowhere2go        | Earl Sweatshirt | Some Rap Songs |
+| name             | artist.name     | album.name     |
+| :--------------- | :-------------- | :------------- |
+| Illegal Smile    | John Prine      | John Prine     |
+| Shattered Dreams | Earl Sweatshirt | Some Rap Songs |
+| The Bends        | Earl Sweatshirt | Some Rap Songs |
+| December 24      | Earl Sweatshirt | Some Rap Songs |
+| Loosie           | Earl Sweatshirt | Some Rap Songs |
 
 ### What’s the most joyful Joy Division song?
 
@@ -173,25 +179,14 @@ joy…
 
 ``` r
 library(ggjoy)
-#> Loading required package: ggridges
-#> 
-#> Attaching package: 'ggridges'
-#> The following object is masked from 'package:ggplot2':
-#> 
-#>     scale_discrete_manual
-#> The ggjoy package has been deprecated. Please switch over to the
-#> ggridges package, which provides the same functionality. Porting
-#> guidelines can be found here:
-#> https://github.com/clauswilke/ggjoy/blob/master/README.md
 
 ggplot(joy, aes(x = valence, y = album_name)) + 
     geom_joy() + 
     theme_joy() +
     ggtitle("Joyplot of Joy Division's joy distributions", subtitle = "Based on valence pulled from Spotify's Web API with spotifyr")
-#> Picking joint bandwidth of 0.106
 ```
 
-![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-10-1.png)<!-- -->
 
 ## Sentify: A Shiny app
 

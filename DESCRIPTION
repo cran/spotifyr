@@ -1,6 +1,6 @@
 Package: spotifyr
 Title: R Wrapper for the 'Spotify' Web API
-Version: 2.0.0
+Version: 2.1.0
 Authors@R: c(person("Charlie", "Thompson", email = "chuck@rcharlie.com", role = c("aut", "cre")), person("Josiah", "Parry", email = "josiah.parry@yahoo.com", role = "aut"), person("Donal", "Phipps", email = "donal.phipps@gmail.com", role = "aut"), person("Tom", "Wolff", email = "tom.wolff@duke.edu", role = "aut"))
 Description: An R wrapper for pulling data from the 'Spotify' Web API 
   <http://developer.spotify.com/web-api> in bulk. It allows you to enter 
@@ -9,7 +9,7 @@ Description: An R wrapper for pulling data from the 'Spotify' Web API
   You can also pull song and playlist information for a given 'Spotify' user.
 Depends: R (>= 3.3.0)
 Imports: dplyr, purrr, tidyr, httr, lubridate, jsonlite, readr, rvest,
-        stringr, tibble
+        stringr, tibble, genius
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -18,11 +18,11 @@ Suggests: testthat
 URL: http://github.com/charlie86/spotifyr
 BugReports: http://github.com/charlie86/spotifyr/issues
 NeedsCompilation: no
-Packaged: 2019-03-04 19:57:45 UTC; charliet
+Packaged: 2019-03-12 03:42:07 UTC; charliet
 Author: Charlie Thompson [aut, cre],
   Josiah Parry [aut],
   Donal Phipps [aut],
   Tom Wolff [aut]
 Maintainer: Charlie Thompson <chuck@rcharlie.com>
 Repository: CRAN
-Date/Publication: 2019-03-06 11:00:03 UTC
+Date/Publication: 2019-03-12 09:40:02 UTC

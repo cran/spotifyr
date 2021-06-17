@@ -1,28 +1,62 @@
 Package: spotifyr
 Title: R Wrapper for the 'Spotify' Web API
-Version: 2.1.1
-Authors@R: c(person("Charlie", "Thompson", email = "chuck@rcharlie.com", role = c("aut", "cre")), person("Josiah", "Parry", email = "josiah.parry@yahoo.com", role = "aut"), person("Donal", "Phipps", email = "donal.phipps@gmail.com", role = "aut"), person("Tom", "Wolff", email = "tom.wolff@duke.edu", role = "aut"))
+Version: 2.2.1
+Date: 2021-06-09
+Authors@R: c(
+    person(
+      given = "Charlie", 
+      family = "Thompson", 
+      email = "chuck@rcharlie.com", 
+      role = c("aut")
+      ), 
+    person(
+       given = "Daniel", 
+       family = "Antal", 
+       email = "daniel.antal@ceemid.eu", 
+       role = c("aut", "cre"),
+       comment = c(ORCID = "0000-0001-7513-6760")
+       ),   
+    person(
+       given = "Josiah", 
+       family = "Parry", 
+       email = "josiah.parry@yahoo.com", 
+       role = "aut", 
+       comment = c(ORCID = "0000-0001-9910-865X")
+       ), 
+    person(
+      given = "Donal", 
+      family = "Phipps", 
+      email = "donal.phipps@gmail.com", 
+      role = "aut"
+      ), 
+    person(
+       given  = "Tom", 
+       family = "Wolff", 
+       email = "tom.wolff@duke.edu", 
+       role = "aut"
+       )
+   )
 Description: An R wrapper for pulling data from the 'Spotify' Web API 
-  <http://developer.spotify.com/web-api> in bulk. It allows you to enter 
-  an artist's name and retrieve their entire discography in seconds, along 
-  with audio features and lyrics from Genius Lyrics <https://www.genius.com>. 
-  You can also pull song and playlist information for a given 'Spotify' user.
+  <https://developer.spotify.com/documentation/web-api/> in bulk, or post items on a
+  'Spotify' user's playlist.
+Maintainer: Daniel Antal <daniel.antal@ceemid.eu>
 Depends: R (>= 3.3.0)
 Imports: dplyr, purrr, tidyr, httr, lubridate, jsonlite, readr, rvest,
-        stringr, tibble, genius
+        stringr, tibble, janitor, rlang, ggridges, magrittr, genius,
+        assertthat, xml2
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.1.1
-Suggests: testthat
-URL: http://github.com/charlie86/spotifyr
-BugReports: http://github.com/charlie86/spotifyr/issues
+RoxygenNote: 7.1.1
+Suggests: testthat (>= 3.0.0)
+URL: https://github.com/charlie86/spotifyr
+BugReports: https://github.com/charlie86/spotifyr/issues
+Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2019-07-13 22:11:58 UTC; charliet
-Author: Charlie Thompson [aut, cre],
-  Josiah Parry [aut],
+Packaged: 2021-06-14 18:44:26 UTC; Daniel Antal
+Author: Charlie Thompson [aut],
+  Daniel Antal [aut, cre] (<https://orcid.org/0000-0001-7513-6760>),
+  Josiah Parry [aut] (<https://orcid.org/0000-0001-9910-865X>),
   Donal Phipps [aut],
   Tom Wolff [aut]
-Maintainer: Charlie Thompson <chuck@rcharlie.com>
 Repository: CRAN
-Date/Publication: 2019-07-13 23:00:03 UTC
+Date/Publication: 2021-06-17 05:50:06 UTC

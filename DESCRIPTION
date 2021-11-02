@@ -1,7 +1,7 @@
 Package: spotifyr
 Title: R Wrapper for the 'Spotify' Web API
-Version: 2.2.1
-Date: 2021-06-09
+Version: 2.2.3
+Date: 2021-11-02
 Authors@R: c(
     person(
       given = "Charlie", 
@@ -46,17 +46,17 @@ Imports: dplyr, purrr, tidyr, httr, lubridate, jsonlite, readr, rvest,
         assertthat, xml2
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: testthat (>= 3.0.0)
 URL: https://github.com/charlie86/spotifyr
 BugReports: https://github.com/charlie86/spotifyr/issues
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2021-06-14 18:44:26 UTC; Daniel Antal
+Packaged: 2021-11-02 16:49:14 UTC; Daniel Antal
 Author: Charlie Thompson [aut],
   Daniel Antal [aut, cre] (<https://orcid.org/0000-0001-7513-6760>),
   Josiah Parry [aut] (<https://orcid.org/0000-0001-9910-865X>),
   Donal Phipps [aut],
   Tom Wolff [aut]
 Repository: CRAN
-Date/Publication: 2021-06-17 05:50:06 UTC
+Date/Publication: 2021-11-02 18:00:02 UTC

@@ -1,3 +1,8 @@
+# spotifyr 2.1.4
+
+* Minor improvements from [@yogat3ch](https://github.com/yogat3ch) for long playlists [PR186](https://github.com/charlie86/spotifyr/pull/186) and playlists with 0 songs [PR183.](https://github.com/charlie86/spotifyr/pull/183)
+* Removal of the genius dependency [@JosiahParry](https://github.com/JosiahParry), [PR189](https://github.com/charlie86/spotifyr/pull/189).
+
 # spotifyr 2.1.2
 
 * Added a `NEWS.md` file to track changes to the package.
@@ -20,7 +25,7 @@
 * Released on CRAN.
 
 # spotifyr 2.2.2
-* Fixes bug [#152](https://github.com/charlie86/spotifyr/issues/152). Thanks for the report, [\@pham-thomas](https://github.com/pham-thomas)!
+* Fixes bug [#152](https://github.com/charlie86/spotifyr/issues/152). Thanks for the report, _@pham-thomas_!
 * Incorporates better API call, thanks for the valuable contribution,  [\@annnvv](https://github.com/annnvv).
 
 # spotifyr 2.2.3

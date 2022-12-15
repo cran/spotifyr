@@ -1,6 +1,6 @@
-#' Get User Playlist
+#' @title Get User Playlist
 #'
-#' Get a playlist owned by a Spotify user.
+#' @description Get a playlist owned by a Spotify user.
 #'
 #' @importFrom stringr str_glue
 #' @importFrom purrr pluck map map_dfr
@@ -40,12 +40,10 @@ get_playlist <- function(playlist_id, fields = NULL,
 
     # stopping is built into query_playlist()
     init_query <- query_playlist(url, params = params)
-
-    if (!is.null(fields)) {
-        return(init_query)
-    } else {
-        # identify how many pages there are
-        n_pages <- ceiling(pluck(init_query, "tracks", "total")/100) - 1
+    # identify how many pages there are
+    total_tracks <- pluck(init_query, "tracks", "total")
+    if (total_tracks > 100) {
+        n_pages <- total_tracks %/% 100
         # identify pagination offsets
         offsets <- seq(from = 1, to = n_pages) * 100
         # create page urls
@@ -60,16 +58,14 @@ get_playlist <- function(playlist_id, fields = NULL,
 
         # overwrite init_query item results
         init_query[["tracks"]][["items"]] <- all_items
-
-        #return init_query object
-        structure(init_query, class = c("playlist", "list"))
-
     }
+    #return init_query object
+    structure(init_query, class = c("playlist", "list"))
 }
 
-#' Get Details of User Playlist Tracks.
+#' @title Get Details of User Playlist Tracks.
 #'
-#' Get full details of the tracks of a playlist owned by a Spotify user.
+#' @description Get full details of the tracks of a playlist owned by a Spotify user.
 #' @param playlist_id Required.
 #' The \href{https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids}{Spotify ID} for the playlist.
 #' @param fields Optional. Filters for the query: a comma-separated list of the fields
@@ -327,7 +323,7 @@ create_playlist <- function(user_id,
 #' A maximum of 100 tracks can be added in one request.
 #' The uris will be formed as
 #' uris = c("spotify%3Atrack%3A61H97kuKIpi6kJQRnUEIlh", "spotify%3Atrack%3A2q6vlgBJ432KeZZNt2ZZBV").
-#' If you have the \code{"spotify:track:"} preffix in your vector it will
+#' If you have the \code{"spotify:track:"} prefix in your vector it will
 #' not be duplicated, otherwise it will be added.
 #' @param position Optional. Integer indicating the position to insert the tracks,
 #' a zero-based index. For example, to insert the tracks in the first position:
@@ -351,15 +347,14 @@ add_tracks_to_playlist <- function(playlist_id,
                                    authorization = get_spotify_authorization_code()
                                    ) {
 
-    uris <- ifelse ( ! grepl( "spotify%3Atrack%3A", uris),
-             paste0("spotify%3Atrack%3A", uris),
-             uris)
+    uris <- purrr::map_chr(uris, ~ifelse(stringr::str_detect(.x, "\\:"), .x, paste0("spotify:track:", .x)))
 
     base_url <- 'https://api.spotify.com/v1/playlists'
-    url <- str_glue('{base_url}/{playlist_id}/tracks?uris={paste0(uris, collapse = ",")}')
+    url <- str_glue('{base_url}/{playlist_id}/tracks')
 
     params <- list(
-        position = position
+        position = position,
+        uris = uris
     )
 
     res <- RETRY('POST', url, body = params,
@@ -470,7 +465,7 @@ change_playlist_details <- function(playlist_id,
 #' @param x A playlist object generated from
 #' @param ... Generic arguments to be passed
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' fall <- get_playlist("4GSV6uJzlbtTCPJhnVU1o8")
 #' tidy(fall)
 #'

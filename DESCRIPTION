@@ -1,7 +1,7 @@
 Package: spotifyr
 Title: R Wrapper for the 'Spotify' Web API
-Version: 2.2.3
-Date: 2021-11-02
+Version: 2.2.4
+Date: 2022-12-14
 Authors@R: c(
     person(
       given = "Charlie", 
@@ -12,7 +12,7 @@ Authors@R: c(
     person(
        given = "Daniel", 
        family = "Antal", 
-       email = "daniel.antal@ceemid.eu", 
+       email = "daniel.antal@dataobservatory.eu", 
        role = c("aut", "cre"),
        comment = c(ORCID = "0000-0001-7513-6760")
        ),   
@@ -34,29 +34,35 @@ Authors@R: c(
        family = "Wolff", 
        email = "tom.wolff@duke.edu", 
        role = "aut"
+       ), 
+    person(
+       given  = "Stephen", 
+       family = " Holsenbeck", 
+       role = "ctb"
        )
    )
 Description: An R wrapper for pulling data from the 'Spotify' Web API 
   <https://developer.spotify.com/documentation/web-api/> in bulk, or post items on a
   'Spotify' user's playlist.
-Maintainer: Daniel Antal <daniel.antal@ceemid.eu>
+Maintainer: Daniel Antal <daniel.antal@dataobservatory.eu>
 Depends: R (>= 3.3.0)
-Imports: dplyr, purrr, tidyr, httr, lubridate, jsonlite, readr, rvest,
-        stringr, tibble, janitor, rlang, ggridges, magrittr, genius,
-        assertthat, xml2
+Imports: dplyr, purrr, httr, lubridate, jsonlite, readr, rvest,
+        stringr, tibble, janitor, rlang, magrittr, assertthat, xml2
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.1.2
-Suggests: testthat (>= 3.0.0)
+RoxygenNote: 7.2.3
+Suggests: ggridges, spelling, testthat (>= 3.0.0)
 URL: https://github.com/charlie86/spotifyr
 BugReports: https://github.com/charlie86/spotifyr/issues
 Config/testthat/edition: 3
+Language: en-US
 NeedsCompilation: no
-Packaged: 2021-11-02 16:49:14 UTC; Daniel Antal
+Packaged: 2022-12-14 20:22:53 UTC; antaldaniel
 Author: Charlie Thompson [aut],
   Daniel Antal [aut, cre] (<https://orcid.org/0000-0001-7513-6760>),
   Josiah Parry [aut] (<https://orcid.org/0000-0001-9910-865X>),
   Donal Phipps [aut],
-  Tom Wolff [aut]
+  Tom Wolff [aut],
+  Stephen Holsenbeck [ctb]
 Repository: CRAN
-Date/Publication: 2021-11-02 18:00:02 UTC
+Date/Publication: 2022-12-15 09:20:02 UTC

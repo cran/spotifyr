@@ -1,7 +1,7 @@
 Package: spotifyr
 Title: R Wrapper for the 'Spotify' Web API
-Version: 2.2.4
-Date: 2022-12-14
+Version: 2.2.5
+Date: 2024-10-22
 Authors@R: c(
     person(
       given = "Charlie", 
@@ -39,7 +39,12 @@ Authors@R: c(
        given  = "Stephen", 
        family = " Holsenbeck", 
        role = "ctb"
-       )
+       ), 
+    person(
+       given = "Peter", 
+       family = "Harrison",
+       role = "ctb"
+    )
    )
 Description: An R wrapper for pulling data from the 'Spotify' Web API 
   <https://developer.spotify.com/documentation/web-api/> in bulk, or post items on a
@@ -50,19 +55,20 @@ Imports: dplyr, purrr, httr, lubridate, jsonlite, readr, rvest,
         stringr, tibble, janitor, rlang, magrittr, assertthat, xml2
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: ggridges, spelling, testthat (>= 3.0.0)
 URL: https://github.com/charlie86/spotifyr
 BugReports: https://github.com/charlie86/spotifyr/issues
 Config/testthat/edition: 3
 Language: en-US
 NeedsCompilation: no
-Packaged: 2022-12-14 20:22:53 UTC; antaldaniel
+Packaged: 2024-10-23 13:29:16 UTC; antal
 Author: Charlie Thompson [aut],
   Daniel Antal [aut, cre] (<https://orcid.org/0000-0001-7513-6760>),
   Josiah Parry [aut] (<https://orcid.org/0000-0001-9910-865X>),
   Donal Phipps [aut],
   Tom Wolff [aut],
-  Stephen Holsenbeck [ctb]
+  Stephen Holsenbeck [ctb],
+  Peter Harrison [ctb]
 Repository: CRAN
-Date/Publication: 2022-12-15 09:20:02 UTC
+Date/Publication: 2024-10-24 10:30:04 UTC
